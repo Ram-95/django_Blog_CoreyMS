@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container">
+    <h2><u>My Coding Profile</u></h2>
+    <br>
+    {% for post in profile %}
+    <table class="table table-hover">
+        {% load static %}
+        <tr>
+            <td>
+                <img src="{% static 'codeforces_logo.png' %}" alt = "CC" height="{{ post.logo_size }}" width="{{ post.logo_size }}">
+                <a href = {{ post.cf_url }} target="_blank"><strong>Code Forces Rating: </strong></a></td>
+            <td><strong>{{ post.codeforces }} ({{ post.codeforces_position }})</strong></td>
+        </tr>
+        <tr>
+            <td>
+                <img src="{% static 'codechef_logo.png' %}" alt = "CF" height="{{ post.logo_size }}" width="{{ post.logo_size }}">
+                <a href = "{{ post.cc_url }}" target="_blank"><strong>Code Chef Rating: </strong></a></td>
+            <td><strong>{{ post.codechef }} ({{ post.codechef_stars }})</strong></td>
+        </tr>
+        <tr>
+            <td>
+                <img src="{% static 'he_logo.png' %}" alt = "HE" height="{{ post.logo_size }}" width="{{ post.logo_size }}">
+                <a href = {{ post.he_url }} target="_blank"><strong>Hacker Earth Rating: </strong></a></td>
+            <td><strong>{{ post.hackerearth }}</strong></td>
+        </tr>
+        <tr>
+            <td>
+                <img src="{% static 'spoj_logo.png' %}" alt = "Spoj" height="{{ post.logo_size }}" width="{{ post.logo_size }}">
+                <a href= {{ post.spoj_url }} target="_blank"><strong>SPOJ Rank: </strong></a></td>
+            <td><strong>{{ post.spoj }}</strong></td>
+        </tr>
+    </table>
+</div>
+    {% endfor %}
+{% endblock content %}

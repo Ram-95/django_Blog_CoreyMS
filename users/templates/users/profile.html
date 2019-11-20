@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+        </div>
+    </div>
+    </fieldset>
+    <!-- FORM HERE -->
+    <!-- enctype = "multipart/form-data" is mandatory since we are dealing with images.
+    if not included, then the images will not be saved.-->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+		<fieldset class="form-group">
+        <legend class="border-bottom mb-4">Profile Info</legend>
+		 {{ u_form|crispy }}
+		 {{ p_form.as_p }}
+		</fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-success" type="submit">Update</button>
+            <a class="btn btn-outline-dark bg-warning text-dark" href="{% url 'profile' %}">Discard</a>
+
+        </div>
+    </form>
+</div>
+{% endblock content %}

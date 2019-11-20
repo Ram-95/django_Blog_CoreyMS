@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="content-section">
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'edit-profile' %}">Edit Profile</a>
+            <a class="btn btn-sm mt-1 mb-1 text-white bg-dark ml-2" href="{% url 'user-posts' user.username %}">View Posts</a>
+        </div>
+    </div>
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Profile Info</legend>
+            <table class="table table-hover">
+                <tr>
+                    <td>Username:</td>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{ user.email  }}</td>
+                </tr>
+            </table>
+    </fieldset>
+</div>
+{% endblock content %}
