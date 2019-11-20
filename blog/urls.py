@@ -18,5 +18,4 @@ urlpatterns = [
     path('about/', views.about, name='blog-about'),
     path('coding_profile/', views.coding_profile, name='blog-coding_profile'),
     path('user/<str:username>', UserPostListView.as_view(), name='user-posts'),
-
 ]

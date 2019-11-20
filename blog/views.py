@@ -3,6 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.conf import settings
 # To use class based views use this module
 from django.views.generic import (
     ListView,
@@ -119,3 +121,4 @@ def coding_profile(request):
         'profile': profile
     }
     return render(request, 'blog/coding_profile.html', context)
+
