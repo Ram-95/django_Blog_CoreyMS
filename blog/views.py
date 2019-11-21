@@ -31,7 +31,7 @@ profile = [
         'he_url': rating.he_url,
         'spoj_url': rating.spoj_url,
         # specifies the logo sizes
-        'logo_size': 40
+        'logo_size': 30
     }
 ]
 
