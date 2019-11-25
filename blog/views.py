@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
+
 # To use class based views use this module
 from django.views.generic import (
     ListView,
@@ -122,3 +123,9 @@ def coding_profile(request):
     }
     return render(request, 'blog/coding_profile.html', context)
 
+
+
+# def password_reset(request):
+#     send_mail('Test Mail', 'Welcome to Django', 'ramm.django@gmail.com', ['ramm.y2k@gmail.com'],
+#               fail_silently=False)
+#     return render(request, 'users/password_reset_done.html')
