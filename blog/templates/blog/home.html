@@ -1,12 +1,12 @@
 {% extends "blog/base.html" %}
 {% block content %}
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
     // Configure/customize these variables.
-    var showChar = 100;  // How many characters are shown by default
-    var ellipsestext = "...";
-    var moretext = "Show more >";
-    var lesstext = "Show less";
+    var showChar = 250;  // How many characters are shown by default
+    var ellipsestext = " ...";
+    var moretext = "Read more";
+    var lesstext = "Read less";
 
 
     $('.article-content').each(function() {
@@ -17,32 +17,20 @@ $(document).ready(function() {
             var c = content.substr(0, showChar);
             var h = content.substr(showChar, content.length - showChar);
 
-            var html = c + '<span class="moreellipses">' + ellipsestext +
-            '&nbsp;</span><span class="less"><span>' + h +
-            '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+            var html = c + ellipsestext + '<a href="" class="morelink">' + moretext + '</a>' +
+            '<span id="more-text" style="visibility: hidden">' + h + '</span>';
+
 
             $(this).html(html);
         }
 
     });
 
-    $(".morelink").click(function(){
-        if($(this).hasClass("less")) {
-            $(this).removeClass("less");
-            $(this).removeClass("moreellipses");
-            $(this).html(moretext);
-        } else {
-            $(this).addClass("less");
-            $(this).html(lesstext);
-        }
-        $(this).parent().prev().toggle();
-        $(this).prev().toggle();
-        return false;
-    });
 });
 </script>
 
 {% for post in posts %}
+<div class="readmore">
 <article class="media content-section">
     <!-- To get the Users image beside the user name -->
     <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
@@ -57,6 +45,7 @@ $(document).ready(function() {
     </div>
 
 </article>
+</div>
 {% endfor %}
 <!-- Code for Paginating the Home Page so that all the blogs are split into pages-->
 {% if is_paginated %}
