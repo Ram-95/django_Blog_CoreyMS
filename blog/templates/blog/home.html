@@ -1,5 +1,47 @@
 {% extends "blog/base.html" %}
 {% block content %}
+<script>
+$(document).ready(function() {
+    // Configure/customize these variables.
+    var showChar = 100;  // How many characters are shown by default
+    var ellipsestext = "...";
+    var moretext = "Show more >";
+    var lesstext = "Show less";
+
+
+    $('.article-content').each(function() {
+        var content = $(this).html();
+
+        if(content.length > showChar) {
+
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+
+            var html = c + '<span class="moreellipses">' + ellipsestext +
+            '&nbsp;</span><span class="less"><span>' + h +
+            '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+            $(this).html(html);
+        }
+
+    });
+
+    $(".morelink").click(function(){
+        if($(this).hasClass("less")) {
+            $(this).removeClass("less");
+            $(this).removeClass("moreellipses");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("less");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
+});
+</script>
+
 {% for post in posts %}
 <article class="media content-section">
     <!-- To get the Users image beside the user name -->
@@ -10,13 +52,15 @@
             <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
         </div>
         <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+        <!-- Post Content -->
         <p class="article-content">{{ post.content }}</p>
     </div>
+
 </article>
 {% endfor %}
 <!-- Code for Paginating the Home Page so that all the blogs are split into pages-->
 {% if is_paginated %}
-    <!-- Previous Page-->
+<!-- Previous Page-->
     {% if page_obj.has_previous %}
         <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
         <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
@@ -29,12 +73,11 @@
             <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
         {% endif %}
     {% endfor %}
-    <!-- NExt Page -->
+
+    <!-- Next Page -->
     {% if page_obj.has_next %}
         <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
         <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
     {% endif %}
 {% endif %}
 {% endblock content %}
-
-
