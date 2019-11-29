@@ -1,32 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
 <script>
-    $(document).ready(function() {
-    // Configure/customize these variables.
-    var showChar = 250;  // How many characters are shown by default
-    var ellipsestext = " ...";
-    var moretext = "Read more";
-    var lesstext = "Read less";
-
-
-    $('.article-content').each(function() {
-        var content = $(this).html();
-
-        if(content.length > showChar) {
-
-            var c = content.substr(0, showChar);
-            var h = content.substr(showChar, content.length - showChar);
-
-            var html = c + ellipsestext + '<a href="" class="morelink">' + moretext + '</a>' +
-            '<span id="more-text" style="visibility: hidden">' + h + '</span>';
-
-
-            $(this).html(html);
-        }
-
-    });
-
-});
 </script>
 
 {% for post in posts %}

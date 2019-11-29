@@ -83,12 +83,7 @@ a.article-title:hover {
   font-size: 2.5rem;
 }
 
-.readmore {
-    width:200px;
-}
-.readmore .moreText {
-    display:none;
-}
-.readmore a.more {
-    display:block;
+.btn-login {
+background-color:#4583ed;
+color: white;
 }
