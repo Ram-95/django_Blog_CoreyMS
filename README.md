@@ -1,3 +1,3 @@
 # Django - Blog Application
 
-**In Progress... **
+**In Progress...**
