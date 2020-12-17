@@ -1,3 +1,3 @@
-# Django - Blog Application
+# Django - Blog Application | CoreyMS
 
-**In Progress... Will be Updated Soon.** :+1:
+ _Blog application developed using Django by following CoreyMS._
